@@ -19,14 +19,17 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-2" aria-label="Kino Roofing Home">
-            <Image
-              src="/placeholder.svg?height=40&width=150"
-              alt="Kino Roofing Logo"
-              width={150}
-              height={40}
-              className="h-10 w-auto"
-              priority
-            />
+            <div style={{ width: 150, height: 40, position: 'relative' }}>
+              <Image
+                src="/placeholder.svg"
+                alt="Kino Roofing Logo"
+                fill
+                style={{ objectFit: 'contain' }}
+                priority
+              />
+            </div>
+
+
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">

@@ -9,13 +9,17 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link href="/" className="inline-block mb-6">
-              <Image
-                src="/placeholder.svg?height=40&width=150"
-                alt="Kino Roofing Logo"
-                width={150}
-                height={40}
-                className="h-10 w-auto"
-              />
+              <div style={{ width: 150, height: 40, position: 'relative' }}>
+                <Image
+                  src="/placeholder.svg"
+                  alt="Kino Roofing Logo"
+                  fill
+                  style={{ objectFit: 'contain' }}
+                  priority
+                />
+              </div>
+
+
             </Link>
             <p className="mb-6">
               Providing quality roofing services to Tucson and surrounding areas since 2005. Licensed, bonded, and
