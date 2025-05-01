@@ -1,4 +1,11 @@
-"use client"
+"use client";
+
+declare global {
+  interface Window {
+    plausible?: (...args: any[]) => void;
+  }
+}
+
 
 import { useState } from "react"
 import Link from "next/link"
@@ -19,9 +26,9 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-2" aria-label="Kino Roofing Home">
-            <div style={{ width: 150, height: 40, position: 'relative' }}>
+            <div style={{ width: 350, height: 140, position: 'relative' }}>
               <Image
-                src="/placeholder.svg"
+                src="/logo.png"
                 alt="Kino Roofing Logo"
                 fill
                 style={{ objectFit: 'contain' }}
@@ -54,13 +61,22 @@ export default function Header() {
               </Link>
             </nav>
 
-            <Button asChild className="bg-orange-600 hover:bg-orange-700">
+            <Button
+              asChild
+              onClick={() => {
+                if (typeof window !== "undefined" && window.plausible) {
+                  window.plausible("CTA-Header-FreeInspection");
+                }
+              }}
+              className="bg-orange-600 hover:bg-orange-700"
+            >
               <Link href="/contact" className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
                 <span className="hidden lg:inline">Free Inspection</span>
                 <span className="lg:hidden">Call Now</span>
               </Link>
             </Button>
+
           </div>
 
           <button
@@ -124,12 +140,23 @@ export default function Header() {
           >
             Contact
           </Link>
-          <Button asChild className="bg-orange-600 hover:bg-orange-700 mt-4">
-            <Link href="/contact" className="flex items-center justify-center gap-2">
+          <Button
+            asChild
+            onClick={() => {
+              if (typeof window !== "undefined" && window.plausible) {
+                window.plausible("CTA-Header-FreeInspection");
+              }
+            }}
+            className="bg-orange-600 hover:bg-orange-700"
+          >
+            <Link href="/contact" className="flex items-center gap-2">
               <Phone className="h-4 w-4" />
-              <span>Free Inspection</span>
+              <span className="hidden lg:inline">Free Inspection</span>
+              <span className="lg:hidden">Call Now</span>
             </Link>
           </Button>
+
+
         </nav>
       </div>
     </header>

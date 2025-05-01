@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Phone, Mail } from "lucide-react"
@@ -12,18 +13,39 @@ export default function CTASection() {
           to help with your project.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="lg" className="bg-white text-orange-600 hover:bg-gray-100">
+          <Button
+            asChild
+            size="lg"
+            className="bg-white text-orange-600 hover:bg-gray-100"
+            onClick={() => {
+              if (typeof window !== "undefined" && window.plausible) {
+                window.plausible("CTA-Section-Call");
+              }
+            }}
+          >
             <Link href="/contact" className="flex items-center gap-2">
               <Phone className="h-5 w-5" />
               Call for Free Inspection
             </Link>
           </Button>
-          <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-orange-700">
+
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="border-white text-white hover:bg-orange-700"
+            onClick={() => {
+              if (typeof window !== "undefined" && window.plausible) {
+                window.plausible("CTA-Section-Email");
+              }
+            }}
+          >
             <Link href="/contact" className="flex items-center gap-2">
               <Mail className="h-5 w-5" />
               Email Us
             </Link>
           </Button>
+
         </div>
       </div>
     </section>
