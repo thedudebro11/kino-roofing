@@ -4,6 +4,8 @@ import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import type { Metadata } from "next"
+import Script from "next/script";
+
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   metadataBase: new URL("https://kinoroofing.com"),
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -39,6 +41,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          defer
+          data-domain="kino-roofing.vercel.app"
+          src="https://plausible.io/js/script.outbound-links.tagged-events.js"
+          strategy="afterInteractive"
+        />
+        <Script id="plausible-init" strategy="afterInteractive">
+          {`
+        window.plausible = window.plausible || function() {
+          (window.plausible.q = window.plausible.q || []).push(arguments)
+        }
+      `}
+        </Script>
+      </head>
+
       <body className={inter.className}>
         <a
           href="#main-content"
