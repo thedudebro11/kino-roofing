@@ -7,22 +7,35 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const res = await fetch('https://formspree.io/f/YOUR-FORM-ID', {
+    const form = e.currentTarget as HTMLFormElement & {
+      name: { value: string };
+      email: { value: string };
+      message: { value: string };
+    };
+    
+
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+    };
+
+    const res = await fetch('/api/contact', {
       method: 'POST',
-      body: formData,
       headers: {
-        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify(data),
     });
 
     if (res.ok) {
       setStatus('✅ Thanks for reaching out! We’ll be in touch soon.');
-      e.currentTarget.reset();
+      form.reset();
     } else {
       setStatus('❌ Oops, something went wrong. Please try again.');
     }
   };
+
 
   return (
     <main className="max-w-2xl mx-auto py-16 px-4">
