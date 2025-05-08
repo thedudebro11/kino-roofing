@@ -20,6 +20,9 @@ yarn-error.log*
 .env*
 .env.local
 
+*.zip
+
+
 # vercel
 .vercel
 
