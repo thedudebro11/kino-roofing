@@ -6,6 +6,7 @@ import CTASection from "@/components/cta-section"
 import WhyChooseUs from "@/components/why-choose-us"
 import RecentProjects from "@/components/recent-projects"
 import LocalAreas from "@/components/local-areas"
+import ChatbotForm from '@/components/ChatbotForm';
 
 export const metadata: Metadata = {
   title: "Professional Roofing Services in Tucson, AZ",
@@ -23,6 +24,7 @@ export default function Home() {
       <TestimonialSection />
       <LocalAreas />
       <CTASection />
+      <ChatbotForm />
     </div>
   )
 }
