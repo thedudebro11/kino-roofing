@@ -10,6 +10,7 @@ type Submission = {
     message: string;
     createdAt: string;
     tag?: string;
+    note?: string;
 };
 
 
@@ -35,6 +36,9 @@ export default function AdminDashboard() {
 
     const [searchTerm, setSearchTerm] = useState('');
     const [filterTag, setFilterTag] = useState('all');
+    const [editingNotes, setEditingNotes] = useState<Record<number, string>>({});
+    const [saveStatus, setSaveStatus] = useState<Record<number, 'saved' | 'saving' | ''>>({});
+
 
 
 
@@ -74,6 +78,8 @@ export default function AdminDashboard() {
                         <th className="p-2 text-left">Message</th>
                         <th className="p-2 text-left">Date</th>
                         <th className="p-2 text-left">Lead Type</th>
+                        <th className="p-2 text-left">Note</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -102,6 +108,45 @@ export default function AdminDashboard() {
                                         <option value="cold">❄️ Cold</option>
                                     </select>
                                 </td>
+                                <td className="p-2">
+                                    <textarea
+                                        value={editingNotes[s.id] ?? s.note ?? ''}
+                                        onChange={(e) =>
+                                            setEditingNotes((prev) => ({ ...prev, [s.id]: e.target.value }))
+                                        }
+                                        onBlur={async () => {
+                                            setSaveStatus((prev) => ({ ...prev, [s.id]: 'saving' }));
+
+                                            await fetch('/api/submissions/note', {
+                                                method: 'POST',
+                                                body: JSON.stringify({ id: s.id, note: editingNotes[s.id] }),
+                                                headers: { 'Content-Type': 'application/json' },
+                                            });
+
+                                            setSubmissions((prev) =>
+                                                prev.map((sub) =>
+                                                    sub.id === s.id ? { ...sub, note: editingNotes[s.id] } : sub
+                                                )
+                                            );
+
+                                            setSaveStatus((prev) => ({ ...prev, [s.id]: 'saved' }));
+
+                                            setTimeout(() => {
+                                                setSaveStatus((prev) => ({ ...prev, [s.id]: '' }));
+                                            }, 2000);
+                                        }}
+                                        className="w-full p-1 border rounded resize-none"
+                                        rows={2}
+                                    />
+                                    {saveStatus[s.id] === 'saving' && (
+                                        <p className="text-sm text-blue-500 mt-1">Saving...</p>
+                                    )}
+                                    {saveStatus[s.id] === 'saved' && (
+                                        <p className="text-sm text-green-600 mt-1">Saved ✅</p>
+                                    )}
+
+                                </td>
+
                             </tr>
                         ))}
                 </tbody>
