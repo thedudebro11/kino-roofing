@@ -13,6 +13,7 @@ model ContactSubmission {
   email     String
   message   String
   createdAt DateTime @default(now())
-  tag       String?  @default("unassigned") // 🆕 add this line
+  tag       String?  @default("unassigned") 
+  note      String? 
 }
 

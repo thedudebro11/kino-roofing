@@ -22,6 +22,32 @@ export default function AdminDashboard() {
             .then(res => res.json())
             .then(data => setSubmissions(data));
     }, []);
+    // Inside AdminDashboard component
+    const handleNoteUpdate = async (id: number, newNote: string) => {
+        setSaveStatus(prev => ({ ...prev, [id]: 'saving' }));
+
+        try {
+            const res = await fetch('/api/submissions/note', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id, note: newNote }),
+            });
+
+            if (res.ok) {
+                setSaveStatus(prev => ({ ...prev, [id]: 'saved' }));
+                setSubmissions(prev =>
+                    prev.map(sub => (sub.id === id ? { ...sub, note: newNote } : sub))
+                );
+            } else {
+                console.error('Failed to save note');
+                setSaveStatus(prev => ({ ...prev, [id]: '' }));
+            }
+        } catch (err) {
+            console.error('Error saving note:', err);
+            setSaveStatus(prev => ({ ...prev, [id]: '' }));
+        }
+    };
+
     const handleTagChange = async (id: number, newTag: string) => {
         await fetch('/api/submissions/tag', {
             method: 'POST',
@@ -138,6 +164,7 @@ export default function AdminDashboard() {
                                         className="w-full p-1 border rounded resize-none"
                                         rows={2}
                                     />
+                                    
                                     {saveStatus[s.id] === 'saving' && (
                                         <p className="text-sm text-blue-500 mt-1">Saving...</p>
                                     )}
