@@ -11,27 +11,80 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
-    default: "Kino Roofing | Professional Roofing Services in Tucson, AZ",
-    template: "%s | Kino Roofing",
+    default: "AZ Roofing | Professional Roofing Services in Tucson, AZ",
+    template: "%s | AZ Roofing",
   },
   description:
-    "Kino Roofing provides professional roofing services in Tucson, AZ and surrounding areas. Specializing in residential and commercial roofing, repairs, and installations.",
+    "AZ Roofing provides professional roofing services in Tucson, AZ and surrounding areas. Specializing in residential and commercial roofing, repairs, and installations.",
   keywords: ["Tucson roofing", "roofing services", "metal roofing Tucson", "shingle roofing", "roof repair Tucson"],
   openGraph: {
-    title: "Kino Roofing | Professional Roofing Services in Tucson, AZ",
+    title: "AZ Roofing | Professional Roofing Services in Tucson, AZ",
     description:
-      "Kino Roofing provides professional roofing services in Tucson, AZ and surrounding areas. Specializing in residential and commercial roofing, repairs, and installations.",
-    url: "https://kinoroofing.com",
-    siteName: "Kino Roofing",
+      "AZ Roofing provides professional roofing services in Tucson, AZ and surrounding areas. Specializing in residential and commercial roofing, repairs, and installations.",
+    url: "https://azroofing.com",
+    siteName: "AZ Roofing",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "AZ Roofing — Professional Roofing Services in Tucson, AZ",
+      },
+    ],
   },
   robots: {
     index: true,
     follow: true,
   },
-  metadataBase: new URL("https://kinoroofing.com"),
-  generator: 'v0.dev'
+  metadataBase: new URL("https://azroofing.com"),
+}
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "RoofingContractor",
+  name: "AZ Roofing",
+  url: "https://azroofing.com",
+  telephone: "+15205551234",
+  email: "info@azroofing.com",
+  description:
+    "Professional roofing services for residential and commercial properties in Tucson, AZ and surrounding areas.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "1234 E Speedway Blvd",
+    addressLocality: "Tucson",
+    addressRegion: "AZ",
+    postalCode: "85719",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 32.2226,
+    longitude: -110.9747,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "07:00",
+      closes: "17:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "08:00",
+      closes: "14:00",
+    },
+  ],
+  areaServed: [
+    { "@type": "City", name: "Tucson" },
+    { "@type": "City", name: "Oro Valley" },
+    { "@type": "City", name: "Marana" },
+    { "@type": "City", name: "Sahuarita" },
+    { "@type": "City", name: "Green Valley" },
+  ],
+  priceRange: "$$",
 }
 
 export default function RootLayout({
@@ -58,6 +111,10 @@ export default function RootLayout({
       </head>
 
       <body className={inter.className}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:p-4 focus:bg-white focus:z-50"

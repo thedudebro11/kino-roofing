@@ -17,46 +17,30 @@ import { cn } from "@/lib/utils"
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
-
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2" aria-label="Kino Roofing Home">
-            <div style={{ width: 350, height: 140, position: 'relative' }}>
-              <Image
-                src="/logo.png"
-                alt="Kino Roofing Logo"
-                fill
-                style={{ objectFit: 'contain' }}
-                priority
-              />
-            </div>
-
-
+          <Link href="/" className="flex items-center space-x-2" aria-label="AZ Roofing Home">
+            <Image
+              src="/images/logo.png"
+              alt="AZ Roofing Logo"
+              width={150}
+              height={40}
+              className="h-10 w-auto"
+              priority
+            />
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
             <nav className="flex items-center space-x-6">
-              <Link href="/services" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">
+              <Link href="/services" className="text-stone-700 hover:text-orange-600 font-medium transition-colors">
                 Services
               </Link>
-              <Link href="/about" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">
+              <Link href="/about" className="text-stone-700 hover:text-orange-600 font-medium transition-colors">
                 About Us
               </Link>
-              <Link href="/portfolio" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">
-                Portfolio
-              </Link>
-              <Link href="/testimonials" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">
-                Testimonials
-              </Link>
-              <Link href="/blog" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">
-                Blog
-              </Link>
-              <Link href="/contact" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">
+              <Link href="/contact" className="text-stone-700 hover:text-orange-600 font-medium transition-colors">
                 Contact
               </Link>
             </nav>
@@ -80,8 +64,8 @@ export default function Header() {
           </div>
 
           <button
-            className="md:hidden text-gray-700"
-            onClick={toggleMenu}
+            className="md:hidden text-stone-700"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMenuOpen}
           >
@@ -100,42 +84,21 @@ export default function Header() {
         <nav className="container mx-auto px-4 py-6 flex flex-col space-y-4">
           <Link
             href="/services"
-            className="text-gray-700 hover:text-orange-600 font-medium py-3 border-b border-gray-100"
+            className="text-stone-700 hover:text-orange-600 font-medium py-3 border-b border-stone-100"
             onClick={() => setIsMenuOpen(false)}
           >
             Services
           </Link>
           <Link
             href="/about"
-            className="text-gray-700 hover:text-orange-600 font-medium py-3 border-b border-gray-100"
+            className="text-stone-700 hover:text-orange-600 font-medium py-3 border-b border-stone-100"
             onClick={() => setIsMenuOpen(false)}
           >
             About Us
           </Link>
           <Link
-            href="/portfolio"
-            className="text-gray-700 hover:text-orange-600 font-medium py-3 border-b border-gray-100"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Portfolio
-          </Link>
-          <Link
-            href="/testimonials"
-            className="text-gray-700 hover:text-orange-600 font-medium py-3 border-b border-gray-100"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Testimonials
-          </Link>
-          <Link
-            href="/blog"
-            className="text-gray-700 hover:text-orange-600 font-medium py-3 border-b border-gray-100"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Blog
-          </Link>
-          <Link
             href="/contact"
-            className="text-gray-700 hover:text-orange-600 font-medium py-3 border-b border-gray-100"
+            className="text-stone-700 hover:text-orange-600 font-medium py-3 border-b border-stone-100"
             onClick={() => setIsMenuOpen(false)}
           >
             Contact

@@ -8,26 +8,26 @@ const services = [
   {
     title: "Residential Roofing",
     description: "Expert installation and repair services for all types of residential roofing systems in Tucson.",
-    image: "/placeholder.svg?height=200&width=300",
-    link: "/services/residential",
+    image: "/images/service-residential.jpg",
+    link: "/services",
   },
   {
     title: "Commercial Roofing",
     description: "Comprehensive commercial roofing solutions designed for durability and performance.",
-    image: "/placeholder.svg?height=200&width=300",
-    link: "/services/commercial",
+    image: "/images/service-commercial.jpg",
+    link: "/services",
   },
   {
     title: "Roof Repairs",
     description: "Fast, reliable roof repair services to fix leaks, damage, and extend the life of your roof.",
-    image: "/placeholder.svg?height=200&width=300",
-    link: "/services/repairs",
+    image: "/images/service-repairs.jpg",
+    link: "/services",
   },
   {
     title: "Roof Inspections",
     description: "Thorough roof inspections to identify issues before they become costly problems.",
-    image: "/placeholder.svg?height=200&width=300",
-    link: "/services/inspections",
+    image: "/images/service-inspections.jpg",
+    link: "/services",
   },
 ]
 
@@ -36,7 +36,7 @@ export default function ServiceHighlights() {
     <section className="container mx-auto px-4 py-16">
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Our Roofing Services</h2>
-        <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+        <p className="text-lg text-stone-700 max-w-2xl mx-auto">
           We offer a complete range of roofing services for residential and commercial properties in Tucson and
           surrounding areas.
         </p>
@@ -58,7 +58,7 @@ export default function ServiceHighlights() {
               <CardTitle>{service.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <CardDescription className="text-gray-700 text-base">{service.description}</CardDescription>
+              <CardDescription className="text-stone-700 text-base">{service.description}</CardDescription>
             </CardContent>
             <CardFooter>
               <Button asChild variant="ghost" className="p-0 h-auto text-orange-600 hover:text-orange-700">
