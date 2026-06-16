@@ -17,6 +17,7 @@ const trustBadges = [
 export default function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [mounted, setMounted] = useState(false)
+  const [videoSrc, setVideoSrc] = useState<string | null>(null)
 
   useEffect(() => {
     setMounted(true)
@@ -24,6 +25,16 @@ export default function Hero() {
       setMousePos({ x: e.clientX, y: e.clientY })
     }
     window.addEventListener("mousemove", handleMouseMove)
+
+    // Defer the video download until the page has fully finished loading
+    // so it never competes with fonts/CSS/JS for the LCP text paint.
+    const loadVideo = () => setVideoSrc("/video/hero.mp4")
+    if (document.readyState === "complete") {
+      loadVideo()
+    } else {
+      window.addEventListener("load", loadVideo, { once: true })
+    }
+
     return () => window.removeEventListener("mousemove", handleMouseMove)
   }, [])
 
@@ -96,7 +107,7 @@ export default function Hero() {
               <Button
                 asChild
                 size="lg"
-                className="bg-orange-600 hover:bg-orange-500 text-white text-base px-7 shadow-lg shadow-orange-900/30"
+                className="bg-orange-700 hover:bg-orange-600 text-white text-base px-7 shadow-lg shadow-orange-900/30"
               >
                 <Link href="/contact" className="flex items-center gap-2">
                   Request Free Inspection
@@ -150,10 +161,11 @@ export default function Hero() {
                 muted
                 loop
                 playsInline
-                poster="/images/hero-crew.jpg"
+                preload="none"
+                poster="/images/hero-crew.webp"
                 className="absolute inset-0 w-full h-full object-cover"
               >
-                <source src="/video/hero.mp4" type="video/mp4" />
+                {videoSrc && <source src={videoSrc} type="video/mp4" />}
               </video>
               <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 bg-stone-900/90 backdrop-blur-sm border border-stone-700/50 rounded-xl p-4 flex items-center gap-4">

@@ -16,7 +16,7 @@ export default function MobileCtaBar() {
         </a>
         <Link
           href="/contact"
-          className="flex-1 flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-500 active:bg-orange-700 text-white rounded-xl py-3.5 text-sm font-semibold transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 bg-orange-700 hover:bg-orange-600 active:bg-orange-800 text-white rounded-xl py-3.5 text-sm font-semibold transition-colors"
         >
           <ClipboardCheck className="h-4 w-4" />
           Free Inspection

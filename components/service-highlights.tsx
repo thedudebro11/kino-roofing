@@ -64,6 +64,7 @@ export default function ServiceHighlights() {
               <Button asChild variant="ghost" className="p-0 h-auto text-orange-600 hover:text-orange-700">
                 <Link href={service.link} className="flex items-center gap-2 group">
                   Learn More
+                  <span className="sr-only"> about {service.title}</span>
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
