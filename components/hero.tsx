@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
@@ -146,14 +145,16 @@ export default function Hero() {
             className="relative"
           >
             <div className="relative h-[400px] md:h-[520px] rounded-2xl overflow-hidden ring-1 ring-stone-700/40 shadow-2xl shadow-black/50">
-              <Image
-                src="/images/hero-crew.jpg"
-                alt="AZ Roofing professional team working on a residential roof in Tucson"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-              />
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster="/images/hero-crew.jpg"
+                className="absolute inset-0 w-full h-full object-cover"
+              >
+                <source src="/video/hero.mp4" type="video/mp4" />
+              </video>
               <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 bg-stone-900/90 backdrop-blur-sm border border-stone-700/50 rounded-xl p-4 flex items-center gap-4">
                 <div className="w-11 h-11 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
